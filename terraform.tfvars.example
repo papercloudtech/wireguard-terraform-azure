@@ -1,4 +1,4 @@
-ssh_username = "thunder"
-ssh_password = "skjawogi0w49wnskapritz@"
-ssh_public_key_path = "~/.ssh/id_rsa.pub"
-resource_location = "France Central"
+ssh_username = "VM_username"
+ssh_password = "VM_password"
+ssh_public_key_path = "PUBLIC KEY PATH"
+resource_location = "RESOURCE LOCATION"
