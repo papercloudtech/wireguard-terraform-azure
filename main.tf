@@ -120,3 +120,7 @@ resource "azurerm_linux_virtual_machine" "wireguard-vm" {
     version   = "latest"
   }
 }
+
+output "public_ip" {
+  value = azure_linux_virtual_machine.wireguard-vm.public_ip_address
+}
