@@ -107,9 +107,9 @@ resource "azurerm_linux_virtual_machine" "wireguard-vm" {
     sku       = "22_04-lts-gen2"
     version   = "latest"
   }
-  # custom_data = filebase64("scripts/cloud-init.sh")
+  custom_data = filebase64("scripts/wire_guard.sh")
 }
 
 output "public_ip" {
-  value = azure_linux_virtual_machine.wireguard-vm.public_ip_address
+  value = azurerm_linux_virtual_machine.wireguard-vm.public_ip_address
 }
