@@ -9,22 +9,10 @@ terraform {
 
 provider "azurerm" {
   features {}
-}
-
-variable "ssh_username" {
-  type = string
-}
-
-variable "ssh_password" {
-  type = string
-}
-
-variable "ssh_public_key_path" {
-  type = string
-}
-
-variable "resource_location" {
-  type = string
+  subscription_id = var.azure_subscription_id
+  tenant_id       = var.azure_tenant_id
+  client_id       = var.azure_client_id
+  client_secret   = var.azure_client_secret
 }
 
 
@@ -40,14 +28,14 @@ resource "azurerm_virtual_network" "wireguard-vnet" {
   name                = "wire-guard-vn"
   resource_group_name = azurerm_resource_group.wire-guard-rg.name
   location            = azurerm_resource_group.wire-guard-rg.location
-  address_space       = ["10.0.0.0/16"]
+  address_space       = ["10.0.0.0/16"] # 255.255.0.0
 }
 
 resource "azurerm_subnet" "wireguard-subnet" {
   name                 = "wg-subnet"
   resource_group_name  = azurerm_resource_group.wire-guard-rg.name
   virtual_network_name = azurerm_virtual_network.wireguard-vnet.name
-  address_prefixes     = ["10.0.0.0/24"]
+  address_prefixes     = ["10.0.0.0/24"] # 255.255.255.0
 }
 
 resource "azurerm_network_security_group" "wireguard-securitygroup" {
@@ -119,4 +107,5 @@ resource "azurerm_linux_virtual_machine" "wireguard-vm" {
     sku       = "22_04-lts-gen2"
     version   = "latest"
   }
+  custom_data = filebase64("scripts/cloud-init.sh")
 }
