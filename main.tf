@@ -97,6 +97,8 @@ resource "azurerm_linux_virtual_machine" "wireguard-vm" {
   }
 
   os_disk {
+    name = "wireguard-os-disk"
+    disk_size_gb = 30
     caching              = "ReadWrite"
     storage_account_type = "Standard_LRS"
   }
