@@ -11,7 +11,8 @@ variable "ssh_public_key_path" {
 }
 
 variable "resource_location" {
-  type = string
+  type    = string
+  default = "France Central"
 }
 
 variable "azure_subscription_id" {
@@ -28,4 +29,19 @@ variable "azure_client_id" {
 
 variable "azure_client_secret" {
   type = string
+}
+
+variable "github_organization" {
+  type    = string
+  default = "InferenceFailed"
+}
+
+variable "github_repository" {
+  type    = string
+  default = "wireguard-server"
+}
+
+variable "github_pat" {
+  type      = string
+  sensitive = true
 }

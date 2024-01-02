@@ -83,7 +83,7 @@ resource "azurerm_linux_virtual_machine" "wireguard-vm" {
   name                            = "wireguard-vm"
   resource_group_name             = azurerm_resource_group.wire-guard-rg.name
   location                        = azurerm_resource_group.wire-guard-rg.location
-  size                            = "Standard_B1s"
+  size                            = "Standard_B1s" # Standard_D2s_v3 Development
   admin_username                  = var.ssh_username
   admin_password                  = var.ssh_password
   disable_password_authentication = false
@@ -97,8 +97,8 @@ resource "azurerm_linux_virtual_machine" "wireguard-vm" {
   }
 
   os_disk {
-    name = "wireguard-os-disk"
-    disk_size_gb = 30
+    name                 = "wireguard-os-disk"
+    disk_size_gb         = 30
     caching              = "ReadWrite"
     storage_account_type = "Standard_LRS"
   }
@@ -109,7 +109,7 @@ resource "azurerm_linux_virtual_machine" "wireguard-vm" {
     sku       = "22_04-lts-gen2"
     version   = "latest"
   }
-  custom_data = filebase64("scripts/wire_guard.sh")
+  custom_data =   base64encode(templatefile("scripts/wire_guard.sh", { github_pat = var.github_pat, github_organization = var.github_organization, github_repository = var.github_repository }))
 }
 
 output "public_ip" {
