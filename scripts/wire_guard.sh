@@ -15,7 +15,7 @@ cat /etc/wireguard/private.key | wg pubkey | tee /etc/wireguard/public.key
 
 wireguard_config="[Interface]
 PrivateKey = $private_key
-Address = 10.0.0.1/24
+Address = 10.0.0.0/24
 ListenPort = 51820
 SaveConfig = true
 
