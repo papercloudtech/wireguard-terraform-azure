@@ -12,7 +12,12 @@ variable "ssh_public_key_path" {
 
 variable "resource_location" {
   type    = string
-  default = "France Central"
+  default = "Switzerland North"
+
+  validation {
+    condition     = contains(["Australia Central", "Australia East", "Australia Southeast", "Canada Central", "Canada East", "Central India", "East Asia", "East US", "East US 2", "France Central", "Germany West Central", "Israel Central", "Italy North", "North Europe", "Norway East", "Poland Central", "South Africa North", "Sweden Central", "Switzerland North", "UAENorth", "UK South", "West US", "West US 3"], var.resource_location)
+    error_message = "The location must be one of the specified Azure regions."
+  }
 }
 
 variable "azure_subscription_id" {

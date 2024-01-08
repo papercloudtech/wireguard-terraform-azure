@@ -109,7 +109,7 @@ resource "azurerm_linux_virtual_machine" "wireguard-vm" {
     sku       = "22_04-lts-gen2"
     version   = "latest"
   }
-  custom_data =   base64encode(templatefile("scripts/wire_guard.sh", { github_pat = var.github_pat, github_organization = var.github_organization, github_repository = var.github_repository }))
+  custom_data = base64encode(templatefile("scripts/wire_guard.sh", { github_pat = var.github_pat, github_organization = var.github_organization, github_repository = var.github_repository }))
 }
 
 output "public_ip" {
