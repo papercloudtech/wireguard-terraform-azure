@@ -49,7 +49,7 @@ resource "azurerm_network_security_group" "wireguard-securitygroup" {
     access                     = "Allow"
     protocol                   = "*"
     source_port_range          = "*"
-    destination_port_ranges    = ["22", "80", "443", "51820"]
+    destination_port_ranges    = ["22", "80", "8000", "443", "51820"]
     source_address_prefix      = "*"
     destination_address_prefix = "*"
   }
@@ -109,7 +109,7 @@ resource "azurerm_linux_virtual_machine" "wireguard-vm" {
     sku       = "22_04-lts-gen2"
     version   = "latest"
   }
-  custom_data = base64encode(templatefile("scripts/wire_guard.sh", { github_pat = var.github_pat, github_organization = var.github_organization, github_repository = var.github_repository }))
+  custom_data = base64encode(templatefile("scripts/wire_guard.sh", { github_organization = var.github_organization, github_repository = var.github_repository }))
 }
 
 output "public_ip" {

@@ -46,7 +46,3 @@ variable "github_repository" {
   default = "wireguard-server"
 }
 
-variable "github_pat" {
-  type      = string
-  sensitive = true
-}

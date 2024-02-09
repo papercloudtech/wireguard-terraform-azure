@@ -32,7 +32,7 @@ systemctl status wg-quick@wg0.service
 
 # Install django Server
 
-git clone https://${github_pat}@github.com/${github_organization}/${github_repository}.git /server/
+git clone https://github.com/${github_organization}/${github_repository}.git /server/
 cd /server/
 
 python3 -m venv venv && source ./venv/bin/activate
