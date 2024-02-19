@@ -38,7 +38,7 @@ cd /server/
 python3 -m venv venv && source ./venv/bin/activate
 pip3 install -r ./requirements.txt
 python3 ./manage.py makemigrations api
-python3 ./manage.py migrate --run-syncdb
+python3 ./manage.py migrate
 DJANGO_SUPERUSER_PASSWORD=WireGuard@443 python3 ./manage.py createsuperuser --noinput --username=admin --email=admin@openkart.com
 python3 ./manage.py runserver 0.0.0.0:80 > /var/log/server.log 2>&1 &
 
