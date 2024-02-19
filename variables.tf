@@ -3,7 +3,8 @@ variable "ssh_username" {
 }
 
 variable "ssh_password" {
-  type = string
+  type      = string
+  sensitive = true
 }
 
 variable "ssh_public_key_path" {
@@ -21,19 +22,23 @@ variable "resource_location" {
 }
 
 variable "azure_subscription_id" {
-  type = string
+  type      = string
+  sensitive = true
 }
 
 variable "azure_tenant_id" {
-  type = string
+  type      = string
+  sensitive = true
 }
 
 variable "azure_client_id" {
-  type = string
+  type      = string
+  sensitive = true
 }
 
 variable "azure_client_secret" {
-  type = string
+  type      = string
+  sensitive = true
 }
 
 variable "github_organization" {
