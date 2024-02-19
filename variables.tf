@@ -43,7 +43,7 @@ variable "azure_client_secret" {
 
 variable "github_organization" {
   type    = string
-  default = "InferenceFailed"
+  default = "papercloudtech"
 }
 
 variable "github_repository" {
