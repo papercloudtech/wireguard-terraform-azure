@@ -9,19 +9,16 @@ terraform {
 
 provider "azurerm" {
   features {}
-  subscription_id = var.azure_subscription_id
-  tenant_id       = var.azure_tenant_id
-  client_id       = var.azure_client_id
-  client_secret   = var.azure_client_secret
+  subscription_id = var.azure_subscription_id != null ? var.azure_subscription_id : null
+  tenant_id       = var.azure_tenant_id != null ? var.azure_tenant_id : null
+  client_id       = var.azure_client_id != null ? var.azure_client_id : null
+  client_secret   = var.azure_client_secret != null ? var.azure_client_secret : null
 }
 
 
 resource "azurerm_resource_group" "wire-guard-rg" {
   name     = "wire-guard-resources"
   location = var.resource_location
-  tags = {
-    environment = "dev"
-  }
 }
 
 resource "azurerm_virtual_network" "wireguard-vnet" {
@@ -83,7 +80,7 @@ resource "azurerm_linux_virtual_machine" "wireguard-vm" {
   name                            = "wireguard-vm"
   resource_group_name             = azurerm_resource_group.wire-guard-rg.name
   location                        = azurerm_resource_group.wire-guard-rg.location
-  size                            = "Standard_B1s" # Standard_D2s_v3 Development
+  size                            = var.vm_size 
   admin_username                  = var.ssh_username
   admin_password                  = var.ssh_password
   disable_password_authentication = false

@@ -1,4 +1,5 @@
-ssh_username = "VM_username"
-ssh_password = "VM_password"
+ssh_username        = "VM_username"
+ssh_password        = "VM_password"
 ssh_public_key_path = "PUBLIC KEY PATH"
-resource_location = "RESOURCE LOCATION"
+resource_location   = "RESOURCE LOCATION"
+vm_size             = "VM SIZE"
